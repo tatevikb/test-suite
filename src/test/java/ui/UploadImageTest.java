@@ -23,7 +23,7 @@ public class UploadImageTest {
         userSettingsPage.hoverOnTheUserAvatar();
         userSettingsPage.selectSettings();
         userSettingsPage.isDescriptionLabelDisplayed();
-        userSettingsPage.uploadImage("/Users/tatev.badalyan/Projects/test-suite/src/main/resources/pisik.png");
+        userSettingsPage.uploadImage(getClass().getClassLoader().getResource("pisik.png").getPath());
         userSettingsPage.clickSaveBtn();
     }
 
