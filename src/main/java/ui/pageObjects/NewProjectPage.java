@@ -11,12 +11,15 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import ui.DriverFactory;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import java.time.Duration;
 import java.util.ArrayList;
 
 public class NewProjectPage extends DriverFactory {
 
+    private Logger logger = LogManager.getLogger(NewProjectPage.class);
     private Wait<WebDriver> wait;
     private WebDriver driver;
     private final String pageUrl = Configurations.APP_BASE_URL + "/create";
@@ -43,6 +46,7 @@ public class NewProjectPage extends DriverFactory {
     public void openPage(){
         this.driver.manage().addCookie(new Cookie("user_key", AuthenticationHelper.getKey()));
         this.driver.get(pageUrl);
+        logger.info("User is opening main page");
     }
 
     public EditorPage clickNewProjectBtn(){
@@ -51,6 +55,7 @@ public class NewProjectPage extends DriverFactory {
 
         ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(1));
+        logger.info("The system switched to Editor page");
         return new EditorPage(driver);
     }
 

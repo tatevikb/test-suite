@@ -2,6 +2,8 @@ package ui.pageObjects;
 
 import configurations.Configurations;
 import helpers.AuthenticationHelper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +17,7 @@ import java.time.Duration;
 
 public class UserSettingsPage {
 
+    private Logger logger = LogManager.getLogger(UserSettingsPage.class);
     private final Wait<WebDriver> wait;
 
     private WebDriver driver;
@@ -48,29 +51,34 @@ public class UserSettingsPage {
     public void openPage(){
         this.driver.manage().addCookie(new Cookie("user_key", AuthenticationHelper.getKey()));
         this.driver.get(pageUrl);
+        logger.info("The page is opening");
     }
 
     public void hoverOnTheUserAvatar() {
         Actions actions = new Actions(driver);
         actions.moveToElement(userAvatar).perform();
+        logger.info("The cursor is on the user avatar");
     }
 
     public void selectSettings() {
         wait.until(ExpectedConditions.elementToBeClickable(settings));
         settings.click();
+        logger.info("Settings page is opened");
     }
     public void isDescriptionLabelDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(descriptionLabel));
         descriptionLabel.isDisplayed();
+        logger.info("Message is displayed under the button");
     }
 
     public void uploadImage(String path) {
-        wait.until(ExpectedConditions.visibilityOf(uploadAvatarBtn));
         uploadAvatarBtn.sendKeys(path);
+        logger.info("Image is uploaded");
     }
 
     public void clickSaveBtn() {
         wait.until(ExpectedConditions.elementToBeClickable(saveChangesBtn));
-        saveChangesBtn.click();
+        saveChangesBtn.submit();
+        logger.info("The change is submitted");
     }
 }
