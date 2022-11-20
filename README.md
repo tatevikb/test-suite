@@ -1,2 +1,2 @@
 # test-suite
-Automation task for Picsart
+Automation task
