@@ -1,5 +1,7 @@
 package ui;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -11,6 +13,7 @@ import ui.utils.RetryAnalyzer;
 
 public class CreateProjectTest {
 
+    private Logger logger = LogManager.getLogger(CreateProjectTest.class);
     private NewProjectPage newProjectPage;
     private ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
 
@@ -19,6 +22,7 @@ public class CreateProjectTest {
         driverThreadLocal.set(new DriverFactory().getDriver());
         newProjectPage = new NewProjectPage(driverThreadLocal.get());
         newProjectPage.openPage();
+        logger.info("Creating New Project test is running");
     }
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void createNewProjectTest () {
@@ -29,6 +33,7 @@ public class CreateProjectTest {
 
     @AfterMethod
     public void cleanup() {
+        logger.info("Closing the window");
         driverThreadLocal.get().quit();
     }
 }
