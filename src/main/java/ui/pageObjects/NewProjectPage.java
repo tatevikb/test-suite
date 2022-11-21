@@ -55,7 +55,7 @@ public class NewProjectPage extends DriverFactory {
 
         ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(1));
-        logger.info("The system switched to Editor page");
+        logger.info("The system switched to Editor");
         return new EditorPage(driver);
     }
 
@@ -63,7 +63,5 @@ public class NewProjectPage extends DriverFactory {
         wait.until(ExpectedConditions.elementToBeClickable(newProjectBtn));
         wait.until(ExpectedConditions.elementToBeClickable(uploadBtn));
         wait.until(ExpectedConditions.elementToBeClickable(createWrapper));
-
     }
-
 }
