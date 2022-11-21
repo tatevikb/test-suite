@@ -30,7 +30,7 @@ public class EditorPage extends DriverFactory {
     }
 
     public void checkEditorLoaded(){
-        wait.until(ExpectedConditions.urlContains("?category=layout&customSize=1080x1080&unit=px"));
+        wait.until(ExpectedConditions.urlContains(pageUrl + "?category=layout&customSize=1080x1080&unit=px"));
         layoutBtn.isSelected();
     }
 
