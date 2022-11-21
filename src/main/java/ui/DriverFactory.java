@@ -17,8 +17,4 @@ public class DriverFactory {
         driver.get(Configurations.APP_BASE_URL);
         return this.driver;
     }
-
-    public void quitDriver(){
-        driver.quit();
-    }
 }
